@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h2>Sporty Shoes</h2>
+<h4>By George Prah</h4>
+
+<span th:text="${msg}"></span>
+<br/>
+<form action="#" th:action="@{/signIn}" th:object="${login}" method="post">
+<label>EmailId</label>
+<input type="email" th:field="*{emailid}"/><br/>
+<label>Password</label>
+<input type="password" th:field="*{password}"/><br/>
+<!--<label>Typeofuser</label><br/>-->
+<!--<input type="radio"  value="admin" th:field="*{typeofuser}"/>Admin-->
+<!--<input type="radio" value="customer" th:field="*{typeofuser}"/>Customer-->
+<br/>
+<input type="submit" value="SignIn"/>    <input type="reset" value="Reset" /> 
+</form>
+<br/>
+
+<a th:href="@{/openSignUp}">SignUp</a> | <a th:href="@{/home}">Go to home</a>
+
+
+</body>
+</html>

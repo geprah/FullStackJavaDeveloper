@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+
+<div th:if="${session.typeofuser} == 'admin'"> 
+	<span th:text="${msg}"></span>
+	<h2>Add Product</h2>
+	<form action="#" th:action="@{/storeProduct}" th:object="${product}" method="post">
+	<label>Product Name</label>
+	<input type="text" th:field="*{pname}"/><br/>
+
+	<label>Price</label>
+	<input type="number" th:field="*{price}"/><br/>
+
+	<label>qty</label>
+	<input type="text" th:field="*{qty}"/><br/>
+
+	<label>Category</label>
+	<select th:field="*{categoryid}">
+		<option value="">--Select Category--</option>
+		<option th:each="cc:${category}" th:value="${cc.cid}">
+		<span th:text="${cc.categoryname}"></span>
+		</option>
+	</select><br/>
+	<label>Product Image</label>
+	<input type="text" th:field="*{productimage}"/><br/>
+<input type="submit" value="Store Product"/>
+</form>
+<br/>
+<a th:href="@{/home}">Back</a>
+
+<hr></hr>
+</div>
+
+<h2>View Product</h2>
+
+<span th:text="${msg}"></span>
+
+<table border="1">
+	<tr>
+		<th>PId</th>
+		<th>PName</th>
+		<th>Price</th>	
+		<th>Quantity</th>
+		<th>Image URL</th>
+		<th>Place Order</th>
+	</tr>
+	<tr th:each="product:${products}">
+		<td th:text="${product.pid}"></td>
+		<td th:text="${product.pname}"></td>
+		<td th:text="${product.price}"></td>
+		<td th:text="${product.qty}"></td>
+		<td><img th:src="${product.productimage}" width="50px" height="50px"/></td>
+		<td><a th:href="@{/placeOrder/{pid} (pid=${product.pid}) }">Place Order</a></td>
+	</tr>
+</table>
+<br/>
+<a th:href="@{/home}">Back</a>
+</body>
+</html>	
